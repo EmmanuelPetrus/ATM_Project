@@ -2,7 +2,7 @@
 #include <windows.h>
 #include <time.h>
 #include <string.h>
-#include "acct_store.c"
+#include "acct_func.c"
 
 int main()
 {
