@@ -19,7 +19,7 @@ int main(void)
 
     printf("\nYour choice:\t");
     scanf("%d", &opt);
-    
+
     fgetc(stdin);
 
     switch (opt)
@@ -35,6 +35,7 @@ int main(void)
         if (!(compare_str(point_info->pin, point_info->pin2)))
         {
             printf("\nYour Account name is %s", point_info->fname);
+            deposit(point_info);
             fp = fopen("Acct.dat", "a+");
             if ((fp == NULL))
             {
