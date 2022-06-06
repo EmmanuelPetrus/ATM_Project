@@ -15,6 +15,7 @@ struct Detail
     char acct_num[BUFFER];
     char pin[BUFFER];
     char pin2[BUFFER];
+    long int bal;
 };
 
 // function to take input of users
@@ -126,4 +127,11 @@ int compare_str(char a[], char b[])
         return 0;
     else
         return 1;
+}
+
+void deposit(person *depo)
+{
+    printf("\nHow much do you want to deposit:");
+    scanf("%d",depo->bal);
+    fgetc(stdin);
 }
