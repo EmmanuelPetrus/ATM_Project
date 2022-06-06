@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <strings.h>
+#include <conio.h>
 #include <ctype.h>
 #include "acct_head.h"
 
@@ -43,6 +44,7 @@ void take_input(person *user, char n)
     }
     else
     {
+        fflush(stdin);
         printf("\nEnter your Account number: ");
         fgets(user->acct_num, BUFFER, stdin);
     }
@@ -57,7 +59,7 @@ void take_password(person *p_word, int n)
     {
         char password[15] = {0};
         char ch;
-        printf("%s your PIN: ", message);
+        printf("\n%s your PIN: ", message);
 
         int i = 0;
         while (((ch = getch()) != '\r') && (i < 10))
