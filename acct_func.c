@@ -132,6 +132,6 @@ int compare_str(char a[], char b[])
 void deposit(person *depo)
 {
     printf("\nHow much do you want to deposit:");
-    scanf("%d",depo->bal);
+    scanf("%d",&depo->bal);
     fgetc(stdin);
 }

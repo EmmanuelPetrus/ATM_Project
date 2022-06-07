@@ -9,11 +9,13 @@ int main(void)
     FILE *fp;
     person info, info_store;
     person *point_info = &info;
+
+    char choice;
     system("cls");
     system("color 0b");
     printf("\n\t\t\t------------Welcome to the Account Registration System----------------");
     printf("\nPlease choose your operation");
-    printf("\n1.Signup Your Account");
+    printf("\n1.Signup Your Account and Deposit");
     printf("\n2.Request For Account Details");
     printf("\n3.Exit");
 
@@ -34,8 +36,6 @@ int main(void)
 
         if (!(compare_str(point_info->pin, point_info->pin2)))
         {
-            printf("\nYour Account name is %s", point_info->fname);
-            deposit(point_info);
             fp = fopen("Acct.dat", "a+");
             if ((fp == NULL))
             {
@@ -44,6 +44,14 @@ int main(void)
             }
             else
             {
+                printf("\nWould you like to make a deposit (y/n): ");
+                scanf("%c", &choice);
+                fgetc(stdin);
+                if (choice == 'y')
+                {
+                    deposit(point_info);
+                }
+
                 if (!(fwrite(&info, sizeof(person), 1, fp)))
                 {
                     fprintf(stderr, "%s", "Account Registration Unsuccessfull");
@@ -66,13 +74,14 @@ int main(void)
             fprintf(stderr, "Error opening file for reading");
             exit(1);
         }
-        printf("\nYour password is %s\n\n", info.pin);
-        while (fread(&info_store, sizeof(person), 1, fp))
+
+        while(fread(&info_store, sizeof(person), 1, fp))
         {
+            printf("%s\n", info_store.acct_num);
+            printf("%s\n", info_store.pin);
             if (!compare_str(info_store.acct_num, info.acct_num))
             {
 
-                system("cls");
                 if (!compare_str(info.pin, info_store.pin))
                 {
                     system("cls");
@@ -81,6 +90,7 @@ int main(void)
                     printf("\n|Email:\t\t%s", info_store.email);
                     printf("\n|Account Number: %s", info_store.acct_num);
                     printf("\n|Contact no.:\t%s", info_store.phone_num);
+                    printf("\n|Account Balance:\t%d", info_store.bal);
                 }
 
                 else
@@ -91,6 +101,7 @@ int main(void)
                 usrFound = 1;
             }
         }
+
         if (!usrFound)
         {
             printf("\n\nUser is not registered!");
@@ -98,8 +109,9 @@ int main(void)
         }
         fclose(fp);
         break;
+
     case 3:
-        printf("\t\t\t Bye Bye :)");
+        printf("\t\t\t Goodbye");
         break;
     }
     return 0;
