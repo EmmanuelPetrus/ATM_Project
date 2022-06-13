@@ -7,7 +7,7 @@ int main(void)
 {
     int opt, usrFound = 0;
     FILE *fp;
-    person info, info_store;
+    person info, info_storex;
     person *point_info = &info;
 
     char choice;
@@ -36,7 +36,7 @@ int main(void)
 
         if (!(compare_str(point_info->pin, point_info->pin2)))
         {
-            fp = fopen("Acct.dat", "a+");
+            fp = fopen("Acct.dat", "ab");
             if ((fp == NULL))
             {
                 fprintf(stderr, "%s", "Failed to open file ");
@@ -68,35 +68,34 @@ int main(void)
     case 2:
         take_input(point_info, 'a');
         take_password(point_info, 1);
-        fp = fopen("Acct.dat", "r");
+        fp = fopen("Acct.dat", "rb");
         if (fp == NULL)
         {
-            fprintf(stderr, "Error opening file for reading");
+            fprintf(stderr, "\nError opening file for reading");
             exit(1);
         }
-
-        while(fread(&info_store, sizeof(person), 1, fp))
+        while (fread(&info_storex, sizeof(person), 1, fp))
         {
-            printf("%s\n", info_store.acct_num);
-            printf("%s\n", info_store.pin);
-            if (!compare_str(info_store.acct_num, info.acct_num))
+            printf("%s\n", info_storex.acct_num);
+            printf("%s\n", info_storex.pin);
+            if (!compare_str(info_storex.acct_num, info.acct_num))
             {
 
-                if (!compare_str(info.pin, info_store.pin))
+                if (!compare_str(info.pin, info_storex.pin))
                 {
                     system("cls");
-                    printf("\n\t\t\t\t\t\t\t\t\tWelcome %s", info_store.fname);
-                    printf("\n\n|Full Name:\t%s", info_store.fname);
-                    printf("\n|Email:\t\t%s", info_store.email);
-                    printf("\n|Account Number: %s", info_store.acct_num);
-                    printf("\n|Contact no.:\t%s", info_store.phone_num);
-                    printf("\n|Account Balance:\t%d", info_store.bal);
+                    printf("\n\t\t\t\t\t\t\t\t\tWelcome %s", info_storex.fname);
+                    printf("\n\n|Full Name:\t%s", info_storex.fname);
+                    printf("\n|Email:\t\t%s", info_storex.email);
+                    printf("\n|Account Number: %s", info_storex.acct_num);
+                    printf("\n|Contact no:\t%s", info_storex.phone_num);
+                    printf("\n|Account Balance: %d", info_storex.bal);
                 }
 
                 else
                 {
                     printf("\n\nInvalid Password!");
-                    Beep(800, 300);
+                    // Beep(800, 300);
                 }
                 usrFound = 1;
             }
@@ -105,7 +104,7 @@ int main(void)
         if (!usrFound)
         {
             printf("\n\nUser is not registered!");
-            Beep(800, 300);
+            // Beep(800, 300);
         }
         fclose(fp);
         break;
