@@ -132,6 +132,38 @@ int compare_str(char a[], char b[])
 void deposit(person *depo)
 {
     printf("\nHow much do you want to deposit:");
-    scanf("%d",&depo->bal);
+    scanf("%d", &depo->bal);
     fgetc(stdin);
+}
+
+int sub_amount(person *bal_ance, int amount, int state)
+{
+    if (bal_ance->bal > amount)
+    {
+        bal_ance->bal -= amount;
+        amount = 0;
+        state = 0;
+        printf("Transaction in Progress!!!!\n");
+        // wait
+        printf("Your balance is: %d\n", bal_ance->bal);
+        printf("Kindly take your cash");
+    }
+    else
+    {
+        printf("\nYour balance is %d and it is insufficient", bal_ance->bal);
+    }
+    return state;
+}
+
+void file_write(person *reg, FILE *fp)
+{
+    fclose(fp);
+    fp = fopen("Acct.dat", "w");
+    if (fp == NULL)
+    {
+        fprintf(stderr, "\nError opening file for reading");
+        exit(1);
+    }
+    fwrite(reg, sizeof(person), 1, fp);
+    fclose(fp);
 }
