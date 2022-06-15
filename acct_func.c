@@ -161,9 +161,22 @@ void file_write(person *reg, FILE *fp)
     fp = fopen("Acct.dat", "w");
     if (fp == NULL)
     {
-        fprintf(stderr, "\nError opening file for reading");
+        fprintf(stderr, "\nError opening file for writing");
         exit(1);
     }
     fwrite(reg, sizeof(person), 1, fp);
+    fclose(fp);
+}
+
+void file_read(person *reg, FILE *fp)
+{
+    fclose(fp);
+    fp = fopen("Acct.dat", "r");
+    if (fp == NULL)
+    {
+        fprintf(stderr, "\nError opening file for reading");
+        exit(1);
+    }
+    fread(reg, sizeof(person), 1, fp);
     fclose(fp);
 }
