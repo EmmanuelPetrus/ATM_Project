@@ -6,10 +6,10 @@
 
 int main()
 {
-    person user, info;
+    person user, info, user_trans;
     person *userp;
     userp = &info;
-    int opt,opt1;
+    int opt, opt1;
     int amount;
     int state = 1;
     int no;
@@ -63,14 +63,63 @@ int main()
                 scanf("%d", &opt);
                 switch (opt)
                 {
+                case 5:
+                    printf("Select the service you want to engage:\n");
+                    printf(" <<1>> Prepaid <<>>\n");
+                    printf(" <<2>> Recharge Card <<>>\n");
+                    printf(" <<3>> Satellite Subscription <<>>\n");
+                    printf(" <<4>> Data-Services <<>>\n");
+
+                case 4:
+                    system("cls");
+                    char acct_num[11];
+                    int choice = 0;
+                    int amou_nt = 0;
+                    printf("Kindly enter the account number you want to transfer to:");
+                    scanf("%s", acct_num);
+                    fgetc(stdin);
+                    while (fread(&user_trans, sizeof(person), 1, fpoint))
+                    {
+                        if (!compare_str(acct_num, user.acct_num))
+                        {
+                            printf("Kindly Verify the details of the destination account\n");
+                            printf("Account Name: %s\n", user_trans.fname);
+                            printf("Account Number: %s\n", user_trans.acct_num);
+                            printf("Kindly press [1] to continue or [2] to exit\n");
+                            scanf("%d", &choice);
+                            if (choice == 1)
+                            {
+                                printf("Enter the amount you want to transfer: ");
+                                scanf("%d", &amou_nt);
+                                user_trans.bal += amou_nt;
+                                file_write(&user_trans, fpoint);
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            printf("\nThanks for banking with us !!!");
+                            exit(2);
+                        }
+                        user.bal -= amou_nt;
+                        file_write(&user, fpoint);
+                    }
+                    break;
+                case 3:
+                    system("cls");
+                    printf("\nYour Account Balance is:%d", user.bal);
+                    printf("\nGood-bye");
+                    break;
                 case 2:
+                    system("cls");
                     printf("\t\t=========================>Welcome to the Deposit Page<===============================");
                     printf("\nEnter the amount you want to deposit:");
                     scanf("%d", &amount);
                     fgetc(stdin);
                     user.bal += amount;
                     amount = 0;
-                    file_write(&user,fpoint);
+                    printf("\nDeposit Successful, your new balance is: %d", user.bal);
+                    file_write(&user, fpoint);
                     break;
                 default:
                     break;
