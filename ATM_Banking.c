@@ -69,7 +69,7 @@ int main()
                     printf(" <<2>> Recharge Card <<>>\n");
                     printf(" <<3>> Satellite Subscription <<>>\n");
                     printf(" <<4>> Data-Services <<>>\n");
-
+                    break;
                 case 4:
                     system("cls");
                     char acct_num[11];
@@ -107,7 +107,8 @@ int main()
                     break;
                 case 3:
                     system("cls");
-                    printf("\nYour Account Balance is:%d", user.bal);
+                    system("color 90");
+                    printf("\nYour Account Balance is: $%d", user.bal);
                     printf("\nGood-bye and thanks for banking with us!!!");
                     break;
                 case 2:
@@ -120,8 +121,6 @@ int main()
                     amount = 0;
                     printf("\nDeposit Successful, your new balance is: %d", user.bal);
                     file_write(&user, fpoint);
-                    break;
-                default:
                     break;
                 case 1:
                     system("cls");
@@ -362,6 +361,10 @@ int main()
                         break;
                     }
                 }
+            }
+            else
+            {
+                printf("\nInvalid PIN entered!!!");
             }
         }
     default:
