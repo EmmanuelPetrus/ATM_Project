@@ -108,7 +108,7 @@ int main()
                 case 3:
                     system("cls");
                     printf("\nYour Account Balance is:%d", user.bal);
-                    printf("\nGood-bye");
+                    printf("\nGood-bye and thanks for banking with us!!!");
                     break;
                 case 2:
                     system("cls");
