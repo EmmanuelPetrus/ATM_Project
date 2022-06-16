@@ -158,7 +158,7 @@ int sub_amount(person *bal_ance, int amount, int state)
 void file_write(person *reg, FILE *fp)
 {
     fclose(fp);
-    fp = fopen("Acct.dat", "w");
+    fp = fopen("Acct.txt", "w");
     if (fp == NULL)
     {
         fprintf(stderr, "\nError opening file for writing");
@@ -171,7 +171,7 @@ void file_write(person *reg, FILE *fp)
 void file_read(person *reg, FILE *fp)
 {
     fclose(fp);
-    fp = fopen("Acct.dat", "r");
+    fp = fopen("Acct.txt", "r");
     if (fp == NULL)
     {
         fprintf(stderr, "\nError opening file for reading");
@@ -179,4 +179,49 @@ void file_read(person *reg, FILE *fp)
     }
     fread(reg, sizeof(person), 1, fp);
     fclose(fp);
+}
+
+void disp_trans(person *user)
+{
+    person user_trans;
+    char acct_num[12];
+    int choice = 0;
+    int amou_nt = 0;
+    printf("Kindly enter the account number you want to transfer to: ");
+    scanf("%s", acct_num);
+    fgetc(stdin);
+    FILE *fpoint;
+    
+    fpoint = fopen("Acct.txt", "r");
+    if (fpoint == NULL)
+    {
+        fprintf(stderr, "\nError opening file for reading");
+        exit(1);
+    }
+    while (fread(&user_trans, sizeof(person), 1, fpoint))
+    {
+        printf("%s\n", user_trans.acct_num);
+        if (!compare_str(acct_num, user_trans.acct_num))
+        {
+            printf("Kindly Verify the details of the destination account\n");
+            printf("Account Name: %s\n", user_trans.fname);
+            printf("Account Number: %s\n", user_trans.acct_num);
+            printf("Kindly press [1] to continue or [2] to exit\n");
+            scanf("%d", &choice);
+            if (choice == 1)
+            {
+                printf("Enter the amount you want to transfer: ");
+                scanf("%d", &amou_nt);
+                user_trans.bal += amou_nt;
+                file_write(&user_trans, fpoint);
+            }
+        }
+        else
+        {
+            printf("\nAccount number not found !!!");
+            exit(2);
+        }
+    }
+    // user->bal -= amou_nt;
+    // file_write(user, fpoint);
 }
