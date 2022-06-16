@@ -7,7 +7,8 @@
 int main()
 {
     person user, info, user_trans;
-    person *userp;
+    person *userp, *user_dep;
+    user_dep = &user;
     userp = &info;
     int opt, opt1;
     int amount;
@@ -38,7 +39,7 @@ int main()
         system("color 0b");
         printf("\tYou're welcome");
         take_password(userp, 1);
-        fpoint = fopen("Acct.dat", "r");
+        fpoint = fopen("Acct.txt", "r");
         if (fpoint == NULL)
         {
             fprintf(stderr, "\nError opening file for reading");
@@ -72,38 +73,8 @@ int main()
                     break;
                 case 4:
                     system("cls");
-                    char acct_num[11];
-                    int choice = 0;
-                    int amou_nt = 0;
-                    printf("Kindly enter the account number you want to transfer to:");
-                    scanf("%s", acct_num);
-                    fgetc(stdin);
-                    while (fread(&user_trans, sizeof(person), 1, fpoint))
-                    {
-                        if (!compare_str(acct_num, user.acct_num))
-                        {
-                            printf("Kindly Verify the details of the destination account\n");
-                            printf("Account Name: %s\n", user_trans.fname);
-                            printf("Account Number: %s\n", user_trans.acct_num);
-                            printf("Kindly press [1] to continue or [2] to exit\n");
-                            scanf("%d", &choice);
-                            if (choice == 1)
-                            {
-                                printf("Enter the amount you want to transfer: ");
-                                scanf("%d", &amou_nt);
-                                user_trans.bal += amou_nt;
-                                file_write(&user_trans, fpoint);
-                                break;
-                            }
-                        }
-                        else
-                        {
-                            printf("\nThanks for banking with us !!!");
-                            exit(2);
-                        }
-                        user.bal -= amou_nt;
-                        file_write(&user, fpoint);
-                    }
+                    // fclose(fpoint);
+                    disp_trans(user_dep);
                     break;
                 case 3:
                     system("cls");
