@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <strings.h>
 #include <conio.h>
 #include <ctype.h>
+#include <stdbool.h>
 #include "acct_head.h"
 
 typedef struct Detail person;
@@ -136,15 +136,13 @@ void deposit(person *depo)
     fgetc(stdin);
 }
 
-int sub_amount(person *bal_ance, int amount, int state)
+int sub_amount(person *bal_ance, int amount)
 {
     if (bal_ance->bal > amount)
     {
         bal_ance->bal -= amount;
         amount = 0;
-        state = 0;
         printf("Transaction in Progress!!!!\n");
-        // wait
         printf("Your balance is: %d\n", bal_ance->bal);
         printf("Kindly take your cash");
     }
@@ -152,33 +150,32 @@ int sub_amount(person *bal_ance, int amount, int state)
     {
         printf("\nYour balance is %d and it is insufficient", bal_ance->bal);
     }
-    return state;
+    return bal_ance->bal;
 }
 
-void file_write(person *reg, FILE *fp)
+void  update_file(person *acct_details, FILE *fp, int amount)
 {
     fclose(fp);
-    fp = fopen("Acct.txt", "w");
-    if (fp == NULL)
-    {
-        fprintf(stderr, "\nError opening file for writing");
-        exit(1);
-    }
-    fwrite(reg, sizeof(person), 1, fp);
-    fclose(fp);
-}
-
-void file_read(person *reg, FILE *fp)
-{
-    fclose(fp);
-    fp = fopen("Acct.txt", "r");
+    person pnewrecord;
+    fp = fopen("Acct.bin", "rb+");
     if (fp == NULL)
     {
         fprintf(stderr, "\nError opening file for reading");
         exit(1);
     }
-    fread(reg, sizeof(person), 1, fp);
-    fclose(fp);
+    while (fread(&pnewrecord, sizeof(person), 1, fp))
+    {
+        if (!(strcmp(acct_details->acct_num, pnewrecord.acct_num)))
+        {
+            pnewrecord.bal = amount;
+            fseek(fp, -156, SEEK_CUR);
+            printf("%d\n",ftell(fp));
+            fflush(stdin);
+            fwrite(&pnewrecord,sizeof(person),1,fp);
+            fclose(fp);
+            break;
+        }
+    }
 }
 
 void disp_trans(person *user)
@@ -190,15 +187,15 @@ void disp_trans(person *user)
     printf("Kindly enter the account number you want to transfer to: ");
     scanf("%s", acct_num);
     fgetc(stdin);
-    FILE *fpoint;
-    
-    fpoint = fopen("Acct.txt", "r");
-    if (fpoint == NULL)
+    FILE *fp;
+
+    fp = fopen("Acct.bin", "r");
+    if (fp == NULL)
     {
         fprintf(stderr, "\nError opening file for reading");
         exit(1);
     }
-    while (fread(&user_trans, sizeof(person), 1, fpoint))
+    while (fread(&user_trans, sizeof(person), 1, fp))
     {
         printf("%s\n", user_trans.acct_num);
         if (!compare_str(acct_num, user_trans.acct_num))
@@ -213,7 +210,7 @@ void disp_trans(person *user)
                 printf("Enter the amount you want to transfer: ");
                 scanf("%d", &amou_nt);
                 user_trans.bal += amou_nt;
-                file_write(&user_trans, fpoint);
+                file_write(&user_trans, fp);
             }
         }
         else
@@ -222,6 +219,4 @@ void disp_trans(person *user)
             exit(2);
         }
     }
-    // user->bal -= amou_nt;
-    // file_write(user, fpoint);
 }
