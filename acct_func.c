@@ -153,9 +153,10 @@ int sub_amount(person *bal_ance, int amount)
     return bal_ance->bal;
 }
 
-void  update_file(person *acct_details, FILE *fp, int amount)
+void update_file(person *acct_details, FILE *fp, int amount)
 {
     fclose(fp);
+    rewind(fp);
     person pnewrecord;
     fp = fopen("Acct.bin", "rb+");
     if (fp == NULL)
@@ -169,9 +170,9 @@ void  update_file(person *acct_details, FILE *fp, int amount)
         {
             pnewrecord.bal = amount;
             fseek(fp, -156, SEEK_CUR);
-            printf("%d\n",ftell(fp));
+            printf("%d\n", ftell(fp));
             fflush(stdin);
-            fwrite(&pnewrecord,sizeof(person),1,fp);
+            fwrite(&pnewrecord, sizeof(person), 1, fp);
             fclose(fp);
             break;
         }
@@ -189,7 +190,7 @@ void disp_trans(person *user)
     fgetc(stdin);
     FILE *fp;
 
-    fp = fopen("Acct.bin", "r");
+    fp = fopen("Acct.bin", "rb+");
     if (fp == NULL)
     {
         fprintf(stderr, "\nError opening file for reading");
@@ -205,12 +206,15 @@ void disp_trans(person *user)
             printf("Account Number: %s\n", user_trans.acct_num);
             printf("Kindly press [1] to continue or [2] to exit\n");
             scanf("%d", &choice);
+            fgetc(stdin);
             if (choice == 1)
             {
                 printf("Enter the amount you want to transfer: ");
                 scanf("%d", &amou_nt);
                 user_trans.bal += amou_nt;
-                file_write(&user_trans, fp);
+                update_file(&user_trans, fp, user_trans.bal);
+                int deduction = sub_amount(user,amou_nt);
+                update_file(user,fp,deduction);
             }
         }
         else
