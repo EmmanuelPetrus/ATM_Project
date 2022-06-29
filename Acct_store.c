@@ -76,6 +76,8 @@ int main(void)
         }
         while (fread(&info_storex, sizeof(person), 1, fp))
         {
+            printf("\n%d\n",ftell(fp));
+            printf("\n%d",info_storex.acct_num);
             if (!compare_str(info_storex.acct_num, info.acct_num))
             {
 
