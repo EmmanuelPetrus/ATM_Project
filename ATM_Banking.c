@@ -53,7 +53,7 @@ int main()
                 system("cls");
                 system("color 3A");
                 printf("\n\t\t\t\t\t\t\t\t\nWelcome %s", user.fname);
-                printf("Your balance is:%d\n", user.bal);
+                // printf("Your balance is:%d\n", user.bal);
                 printf("\t\t\tSelect the transaction you want to perform:\n");
                 printf(" <<1>> Withdrawal <<>>\n");
                 printf(" <<2>> Deposit <<>>\n");
@@ -126,7 +126,7 @@ int main()
                             case 1:
                                 amount = 100;
                                 state = sub_amount(&user, amount);
-                                update_file(&user,fpoint,state);
+                                update_file(&user, fpoint, state);
                                 no = 0;
                                 break;
                             case 2:
@@ -163,9 +163,10 @@ int main()
                                     break;
                                 }
                             default:
-
+                                printf("\nInvalid input!!!!");
                                 break;
                             }
+                            break;
                         }
                     case 2:
                         system("cls");
@@ -225,8 +226,10 @@ int main()
                                 }
                                 break;
                             default:
+                                printf("Invalid input!!!!");
                                 break;
                             }
+                            break;
                         }
                     case 3:
                         system("cls");
@@ -285,8 +288,10 @@ int main()
                                     break;
                                 }
                             default:
+                                printf("Invalid input!!!!");
                                 break;
                             }
+                            break;
                         }
                     case 4:
                         system("cls");
@@ -345,10 +350,12 @@ int main()
                                     break;
                                 }
                             default:
+                                printf("Invalid input!!!!");
                                 break;
                             }
                         }
                     default:
+
                         break;
                     }
                     break;
@@ -357,9 +364,11 @@ int main()
             else
             {
                 printf("\nInvalid PIN entered!!!");
+                exit(1);
             }
         }
     default:
+        printf("Invalid input!!!!");
         break;
     }
     return 0;
