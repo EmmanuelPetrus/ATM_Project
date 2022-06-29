@@ -53,7 +53,6 @@ int main()
                 system("cls");
                 system("color 3A");
                 printf("\n\t\t\t\t\t\t\t\t\nWelcome %s", user.fname);
-                // printf("Your balance is:%d\n", user.bal);
                 printf("\t\t\tSelect the transaction you want to perform:\n");
                 printf(" <<1>> Withdrawal <<>>\n");
                 printf(" <<2>> Deposit <<>>\n");
@@ -125,25 +124,25 @@ int main()
                             {
                             case 1:
                                 amount = 100;
-                                state = sub_amount(&user, amount);
+                                state = sub_amount(&user, amount,'w');
                                 update_file(&user, fpoint, state);
                                 no = 0;
                                 break;
                             case 2:
                                 amount = 500;
-                                state = sub_amount(&user, amount);
+                                state = sub_amount(&user, amount,'w');
                                 update_file(&user, fpoint, state);
                                 no = 0;
                                 break;
                             case 3:
                                 amount = 1000;
-                                state = sub_amount(&user, amount);
+                                state = sub_amount(&user, amount,'w');
                                 update_file(&user, fpoint, state);
                                 no = 0;
                                 break;
                             case 4:
                                 amount = 1500;
-                                state = sub_amount(&user, amount);
+                                state = sub_amount(&user, amount,'w');
                                 update_file(&user, fpoint, state);
                                 no = 0;
                                 break;
@@ -153,218 +152,207 @@ int main()
                                 if (amount % 100 != 0 || amount % 200 != 0 || amount % 500 != 0 || amount % 1000 != 0)
                                 {
                                     printf("Amount entered is not a multiple of the selected denomination!!!\n");
-                                    break;
                                 }
                                 else
                                 {
-                                    state = sub_amount(&user, amount);
+                                    state = sub_amount(&user, amount,'w');
+                                    update_file(&user, fpoint, state);
+                                    no = 0;
+                                }
+                                break;
+                            }
+                        case 2:
+                            system("cls");
+                            while (no)
+                            {
+                                int opt2;
+                                system("color 0b");
+                                printf("Kindly select the amount you want to withdraw: ");
+                                printf("\n <<1>> 400 <<>>");
+                                printf("\t\t\t\t\t\t\t <<2>> 1000 <<>>\n");
+                                printf(" <<3>> 2000 <<>>");
+                                printf("\t\t\t\t\t\t <<4>> 5000 <<>>\n");
+                                printf(" <<5>> Other Amount <<>>\n");
+                                printf(" <<->> Input your choice here: ");
+                                scanf("%d", &opt2);
+                                fgetc(stdin);
+                                switch (opt2)
+                                {
+                                case 1:
+                                    amount = 400;
+                                    state = sub_amount(&user, amount,'w');
                                     update_file(&user, fpoint, state);
                                     no = 0;
                                     break;
+                                case 2:
+                                    amount = 1000;
+                                    state = sub_amount(&user, amount,'w');
+                                    update_file(&user, fpoint, state);
+                                    no = 0;
+                                    break;
+                                case 3:
+                                    amount = 2000;
+                                    state = sub_amount(&user, amount,'w');
+                                    update_file(&user, fpoint, state);
+                                    no = 0;
+                                    break;
+                                case 4:
+                                    amount = 5000;
+                                    state = sub_amount(&user, amount,'w');
+                                    update_file(&user, fpoint, state);
+                                    no = 0;
+                                    break;
+                                case 5:
+                                    printf("Enter the amount you want to withdraw:");
+                                    scanf("%d", &amount);
+                                    if (amount % 400 != 0 || amount % 1000 != 0 || amount % 2000 != 0 || amount % 5000 != 0)
+                                    {
+                                        printf("\nAmount entered is not a multiple of the selected denomination!!!\n");
+                                    }
+                                    else
+                                    {
+                                        state = sub_amount(&user, amount,'w');
+                                        update_file(&user, fpoint, state);
+                                        no = 0;
+                                    }
+                                    break;
+                                default:
+                                    printf("Invalid input!!!!");
+                                    break;
                                 }
-                            default:
-                                printf("\nInvalid input!!!!");
-                                break;
                             }
                             break;
-                        }
-                    case 2:
-                        system("cls");
-                        while (no)
-                        {
-                            int opt2;
-                            system("color 0b");
-                            printf("Kindly select the amount you want to withdraw: ");
-                            printf("\n <<1>> 400 <<>>");
-                            printf("\t\t\t\t\t\t\t <<2>> 1000 <<>>\n");
-                            printf(" <<3>> 2000 <<>>");
-                            printf("\t\t\t\t\t\t <<4>> 5000 <<>>\n");
-                            printf(" <<5>> Other Amount <<>>\n");
-                            printf(" <<->> Input your choice here: ");
-                            scanf("%d", &opt2);
-                            fgetc(stdin);
-                            switch (opt2)
+                        case 3:
+                            system("cls");
+                            while (no)
                             {
-                            case 1:
-                                amount = 400;
-                                state = sub_amount(&user, amount);
-                                update_file(&user, fpoint, state);
-                                no = 0;
-                                break;
-                            case 2:
-                                amount = 1000;
-                                state = sub_amount(&user, amount);
-                                update_file(&user, fpoint, state);
-                                no = 0;
-                                break;
-                            case 3:
-                                amount = 2000;
-                                state = sub_amount(&user, amount);
-                                update_file(&user, fpoint, state);
-                                no = 0;
-                                break;
-                            case 4:
-                                amount = 5000;
-                                state = sub_amount(&user, amount);
-                                update_file(&user, fpoint, state);
-                                no = 0;
-                                break;
-                            case 5:
-                                printf("Enter the amount you want to withdraw:");
-                                scanf("%d", &amount);
-                                if (amount % 400 != 0 || amount % 1000 != 0 || amount % 2000 != 0 || amount % 5000 != 0)
+                                int opt2;
+                                system("color 0b");
+                                printf("Kindly select the amount you want to withdraw: ");
+                                printf("\n <<1>> 500 <<>>");
+                                printf("\t\t\t\t\t\t\t <<2>> 1000 <<>>\n");
+                                printf(" <<3>> 2000 <<>>");
+                                printf("\t\t\t\t\t\t <<4>> 5000 <<>>\n");
+                                printf(" <<5>> Other Amount <<>>\n");
+                                printf(" <<->> Input your choice here: ");
+                                scanf("%d", &opt2);
+                                fgetc(stdin);
+                                switch (opt2)
                                 {
-                                    printf("\nAmount entered is not a multiple of the selected denomination!!!\n");
-                                    break;
-                                }
-                                else
-                                {
-                                    state = sub_amount(&user, amount);
+                                case 1:
+                                    amount = 500;
+                                    state = sub_amount(&user, amount,'w');
                                     update_file(&user, fpoint, state);
                                     no = 0;
                                     break;
+                                case 2:
+                                    amount = 1000;
+                                    state = sub_amount(&user, amount,'w');
+                                    update_file(&user, fpoint, state);
+                                    no = 0;
+                                    break;
+                                case 3:
+                                    amount = 2000;
+                                    state = sub_amount(&user, amount,'w');
+                                    update_file(&user, fpoint, state);
+                                    no = 0;
+                                    break;
+                                case 4:
+                                    amount = 5000;
+                                    state = sub_amount(&user, amount,'w');
+                                    update_file(&user, fpoint, state);
+                                    no = 0;
+                                    break;
+                                case 5:
+                                    printf("Enter the amount you want to withdraw:");
+                                    scanf("%d", &amount);
+                                    if (amount % 500 != 0)
+                                    {
+                                        printf("\nAmount entered is not a multiple of the selected denomination!!!\n");
+                                    }
+                                    else
+                                    {
+                                        state = sub_amount(&user, amount,'w');
+                                        update_file(&user, fpoint, state);
+                                        no = 0;
+                                    }
+                                default:
+                                    printf("Invalid input!!!!");
+                                    break;
                                 }
-                                break;
-                            default:
-                                printf("Invalid input!!!!");
-                                break;
                             }
                             break;
-                        }
-                    case 3:
-                        system("cls");
-                        while (no)
-                        {
-                            int opt2;
-                            system("color 0b");
-                            printf("Kindly select the amount you want to withdraw: ");
-                            printf("\n <<1>> 500 <<>>");
-                            printf("\t\t\t\t\t\t\t <<2>> 1000 <<>>\n");
-                            printf(" <<3>> 2000 <<>>");
-                            printf("\t\t\t\t\t\t <<4>> 5000 <<>>\n");
-                            printf(" <<5>> Other Amount <<>>\n");
-                            printf(" <<->> Input your choice here: ");
-                            scanf("%d", &opt2);
-                            fgetc(stdin);
-                            switch (opt2)
+                        case 4:
+                            system("cls");
+                            while (no)
                             {
-                            case 1:
-                                amount = 500;
-                                state = sub_amount(&user, amount);
-                                update_file(&user, fpoint, state);
-                                no = 0;
-                                break;
-                            case 2:
-                                amount = 1000;
-                                state = sub_amount(&user, amount);
-                                update_file(&user, fpoint, state);
-                                no = 0;
-                                break;
-                            case 3:
-                                amount = 2000;
-                                state = sub_amount(&user, amount);
-                                update_file(&user, fpoint, state);
-                                no = 0;
-                                break;
-                            case 4:
-                                amount = 5000;
-                                state = sub_amount(&user, amount);
-                                update_file(&user, fpoint, state);
-                                no = 0;
-                                break;
-                            case 5:
-                                printf("Enter the amount you want to withdraw:");
-                                scanf("%d", &amount);
-                                if (amount % 500 != 0)
+                                int opt2;
+                                system("color 0b");
+                                printf("Kindly select the amount you want to withdraw: ");
+                                printf("\n <<1>> 500 <<>>");
+                                printf("\t\t\t\t\t\t\t <<2>> 1000 <<>>\n");
+                                printf(" <<3>> 2000 <<>>");
+                                printf("\t\t\t\t\t\t <<4>> 5000 <<>>\n");
+                                printf(" <<5>> Other Amount <<>>\n");
+                                printf(" <<->> Input your choice here: ");
+                                scanf("%d", &opt2);
+                                fgetc(stdin);
+                                switch (opt2)
                                 {
-                                    printf("\nAmount entered is not a multiple of the selected denomination!!!\n");
-                                    break;
-                                }
-                                else
-                                {
-                                    state = sub_amount(&user, amount);
+                                case 1:
+                                    amount = 500;
+                                    state = sub_amount(&user, amount,'w');
                                     update_file(&user, fpoint, state);
                                     no = 0;
                                     break;
+                                case 2:
+                                    amount = 1000;
+                                    state = sub_amount(&user, amount,'w');
+                                    update_file(&user, fpoint, state);
+                                    no = 0;
+                                    break;
+                                case 3:
+                                    amount = 2000;
+                                    state = sub_amount(&user, amount,'w');
+                                    update_file(&user, fpoint, state);
+                                    no = 0;
+                                    break;
+                                case 4:
+                                    amount = 5000;
+                                    state = sub_amount(&user, amount,'w');
+                                    update_file(&user, fpoint, state);
+                                    no = 0;
+                                    break;
+                                case 5:
+                                    printf("Enter the amount you want to withdraw:");
+                                    scanf("%d", &amount);
+                                    if (amount % 1000 != 0)
+                                    {
+                                        printf("\nAmount entered is not a multiple of the selected denomination!!!\n");
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        state = sub_amount(&user, amount,'w');
+                                        update_file(&user, fpoint, state);
+                                        no = 0;
+                                        break;
+                                    }
+                                default:
+                                    printf("Invalid input!!!!");
+                                    break;
                                 }
-                            default:
-                                printf("Invalid input!!!!");
-                                break;
                             }
+                        default:
+                            printf("Invalid Input!!!");
                             break;
                         }
-                    case 4:
-                        system("cls");
-                        while (no)
-                        {
-                            int opt2;
-                            system("color 0b");
-                            printf("Kindly select the amount you want to withdraw: ");
-                            printf("\n <<1>> 500 <<>>");
-                            printf("\t\t\t\t\t\t\t <<2>> 1000 <<>>\n");
-                            printf(" <<3>> 2000 <<>>");
-                            printf("\t\t\t\t\t\t <<4>> 5000 <<>>\n");
-                            printf(" <<5>> Other Amount <<>>\n");
-                            printf(" <<->> Input your choice here: ");
-                            scanf("%d", &opt2);
-                            fgetc(stdin);
-                            switch (opt2)
-                            {
-                            case 1:
-                                amount = 500;
-                                state = sub_amount(&user, amount);
-                                update_file(&user, fpoint, state);
-                                no = 0;
-                                break;
-                            case 2:
-                                amount = 1000;
-                                state = sub_amount(&user, amount);
-                                update_file(&user, fpoint, state);
-                                no = 0;
-                                break;
-                            case 3:
-                                amount = 2000;
-                                state = sub_amount(&user, amount);
-                                update_file(&user, fpoint, state);
-                                no = 0;
-                                break;
-                            case 4:
-                                amount = 5000;
-                                state = sub_amount(&user, amount);
-                                update_file(&user, fpoint, state);
-                                no = 0;
-                                break;
-                            case 5:
-                                printf("Enter the amount you want to withdraw:");
-                                scanf("%d", &amount);
-                                if (amount % 1000 != 0)
-                                {
-                                    printf("\nAmount entered is not a multiple of the selected denomination!!!\n");
-                                    break;
-                                }
-                                else
-                                {
-                                    state = sub_amount(&user, amount);
-                                    update_file(&user, fpoint, state);
-                                    no = 0;
-                                    break;
-                                }
-                            default:
-                                printf("Invalid input!!!!");
-                                break;
-                            }
-                        }
-                    default:
-
                         break;
                     }
+                default:
+                    printf("Invalid input!!!!");
                     break;
                 }
-            }
-            else
-            {
-                printf("\nInvalid PIN entered!!!");
-                exit(1);
             }
         }
     default:
