@@ -136,15 +136,18 @@ void deposit(person *depo)
     fgetc(stdin);
 }
 
-int sub_amount(person *bal_ance, int amount)
+int sub_amount(person *bal_ance, int amount, char a)
 {
     if (bal_ance->bal > amount)
     {
         bal_ance->bal -= amount;
         amount = 0;
-        printf("Transaction in Progress!!!!\n");
-        printf("Your balance is: %d\n", bal_ance->bal);
-        printf("Kindly take your cash");
+        if (a == 'w')
+        {
+            printf("Transaction in Progress!!!!\n");
+            printf("Your balance is: %d\n", bal_ance->bal);
+            printf("Kindly take your cash");
+        }
     }
     else
     {
@@ -170,7 +173,6 @@ void update_file(person *acct_details, FILE *fp, int amount)
         {
             pnewrecord.bal = amount;
             fseek(fp, -156, SEEK_CUR);
-            printf("%d\n", ftell(fp));
             fflush(stdin);
             fwrite(&pnewrecord, sizeof(person), 1, fp);
             fclose(fp);
@@ -185,6 +187,7 @@ void disp_trans(person *user)
     char acct_num[12];
     int choice = 0;
     int amou_nt = 0;
+    int acct_found = 0;
     printf("Kindly enter the account number you want to transfer to: ");
     scanf("%s", acct_num);
     fgetc(stdin);
@@ -201,6 +204,7 @@ void disp_trans(person *user)
         printf("%s\n", user_trans.acct_num);
         if (!compare_str(acct_num, user_trans.acct_num))
         {
+            acct_found = 1;
             printf("Kindly Verify the details of the destination account\n");
             printf("Account Name: %s\n", user_trans.fname);
             printf("Account Number: %s\n", user_trans.acct_num);
@@ -213,14 +217,15 @@ void disp_trans(person *user)
                 scanf("%d", &amou_nt);
                 user_trans.bal += amou_nt;
                 update_file(&user_trans, fp, user_trans.bal);
-                int deduction = sub_amount(user,amou_nt);
-                update_file(user,fp,deduction);
+                int deduction = sub_amount(user, amou_nt,'a');
+                update_file(user, fp, deduction);
+                break;
             }
         }
-        else
-        {
-            printf("\nAccount number not found !!!");
-            exit(2);
-        }
+    }
+    if (!(acct_found))
+    {
+        printf("\nAccount number not found !!!");
+        exit(2);
     }
 }
