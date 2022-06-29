@@ -36,7 +36,7 @@ int main(void)
 
         if (!(compare_str(point_info->pin, point_info->pin2)))
         {
-            fp = fopen("Acct.txt", "a+");
+            fp = fopen("Acct.bin", "ab+");
             if ((fp == NULL))
             {
                 fprintf(stderr, "%s", "Failed to open file ");
@@ -68,7 +68,7 @@ int main(void)
     case 2:
         take_input(point_info, 'a');
         take_password(point_info, 1);
-        fp = fopen("Acct.txt", "r");
+        fp = fopen("Acct.bin", "rb");
         if (fp == NULL)
         {
             fprintf(stderr, "\nError opening file for reading");
