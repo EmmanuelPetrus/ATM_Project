@@ -7,14 +7,14 @@
 int main()
 {
     person user, info, user_trans;
-    person *userp, *user_dep;
-    user_dep = &user;
-    userp = &info;
-    int opt, opt1;
+    person *user_password, *user_deposit;
+    user_deposit = &user;
+    user_password = &info;
+    int opt, opt1, index;
     int amount;
-    int state = 1;
-    int no;
-    FILE *fpoint;
+    int state;
+    int no = 1;
+    FILE *fpoint = NULL;
     system("cls");
     system("color fc");
 
@@ -38,8 +38,8 @@ int main()
         system("cls");
         system("color 0b");
         printf("\tYou're welcome");
-        take_password(userp, 1);
-        fpoint = fopen("Acct.txt", "r");
+        take_password(user_password, 1);
+        fpoint = fopen("Acct.bin", "rb+");
         if (fpoint == NULL)
         {
             fprintf(stderr, "\nError opening file for reading");
@@ -47,9 +47,9 @@ int main()
         }
         while (fread(&user, sizeof(person), 1, fpoint))
         {
-            if (!compare_str(userp->pin, user.pin))
+            if (!compare_str(user_password->pin, user.pin))
             {
-                person *user_save = &user;
+
                 system("cls");
                 system("color 3A");
                 printf("\n\t\t\t\t\t\t\t\t\nWelcome %s", user.fname);
@@ -62,6 +62,7 @@ int main()
                 printf(" <<5>> Top-Up Services <<>>\n\n");
                 printf(" <<->> Input your choice here: ");
                 scanf("%d", &opt);
+                fgetc(stdin);
                 switch (opt)
                 {
                 case 5:
@@ -73,8 +74,7 @@ int main()
                     break;
                 case 4:
                     system("cls");
-                    // fclose(fpoint);
-                    disp_trans(user_dep);
+                    disp_trans(user_deposit);
                     break;
                 case 3:
                     system("cls");
@@ -91,7 +91,7 @@ int main()
                     user.bal += amount;
                     amount = 0;
                     printf("\nDeposit Successful, your new balance is: %d", user.bal);
-                    file_write(&user, fpoint);
+                    update_file(&user, fpoint, user.bal);
                     break;
                 case 1:
                     system("cls");
@@ -108,7 +108,7 @@ int main()
                     {
                     case 1:
                         system("cls");
-                        while (state)
+                        while (no)
                         {
                             int opt2;
                             system("color 0b");
@@ -125,23 +125,27 @@ int main()
                             {
                             case 1:
                                 amount = 100;
-                                state = sub_amount(user_save, amount, no);
-                                file_write(&user, fpoint);
+                                state = sub_amount(&user, amount);
+                                update_file(&user,fpoint,state);
+                                no = 0;
                                 break;
                             case 2:
                                 amount = 500;
-                                state = sub_amount(user_save, amount, no);
-                                file_write(&user, fpoint);
+                                state = sub_amount(&user, amount);
+                                update_file(&user, fpoint, state);
+                                no = 0;
                                 break;
                             case 3:
                                 amount = 1000;
-                                state = sub_amount(user_save, amount, no);
-                                file_write(&user, fpoint);
+                                state = sub_amount(&user, amount);
+                                update_file(&user, fpoint, state);
+                                no = 0;
                                 break;
                             case 4:
                                 amount = 1500;
-                                state = sub_amount(user_save, amount, no);
-                                file_write(&user, fpoint);
+                                state = sub_amount(&user, amount);
+                                update_file(&user, fpoint, state);
+                                no = 0;
                                 break;
                             case 5:
                                 printf("Enter the amount you want to withdraw:");
@@ -153,8 +157,9 @@ int main()
                                 }
                                 else
                                 {
-                                    state = sub_amount(user_save, amount, no);
-                                    file_write(&user, fpoint);
+                                    state = sub_amount(&user, amount);
+                                    update_file(&user, fpoint, state);
+                                    no = 0;
                                     break;
                                 }
                             default:
@@ -164,7 +169,7 @@ int main()
                         }
                     case 2:
                         system("cls");
-                        while (state)
+                        while (no)
                         {
                             int opt2;
                             system("color 0b");
@@ -181,23 +186,27 @@ int main()
                             {
                             case 1:
                                 amount = 400;
-                                state = sub_amount(user_save, amount, no);
-                                file_write(&user, fpoint);
+                                state = sub_amount(&user, amount);
+                                update_file(&user, fpoint, state);
+                                no = 0;
                                 break;
                             case 2:
                                 amount = 1000;
-                                state = sub_amount(user_save, amount, no);
-                                file_write(&user, fpoint);
+                                state = sub_amount(&user, amount);
+                                update_file(&user, fpoint, state);
+                                no = 0;
                                 break;
                             case 3:
                                 amount = 2000;
-                                state = sub_amount(user_save, amount, no);
-                                file_write(&user, fpoint);
+                                state = sub_amount(&user, amount);
+                                update_file(&user, fpoint, state);
+                                no = 0;
                                 break;
                             case 4:
                                 amount = 5000;
-                                state = sub_amount(user_save, amount, no);
-                                file_write(&user, fpoint);
+                                state = sub_amount(&user, amount);
+                                update_file(&user, fpoint, state);
+                                no = 0;
                                 break;
                             case 5:
                                 printf("Enter the amount you want to withdraw:");
@@ -209,8 +218,9 @@ int main()
                                 }
                                 else
                                 {
-                                    state = sub_amount(user_save, amount, no);
-                                    file_write(&user, fpoint);
+                                    state = sub_amount(&user, amount);
+                                    update_file(&user, fpoint, state);
+                                    no = 0;
                                     break;
                                 }
                                 break;
@@ -220,7 +230,7 @@ int main()
                         }
                     case 3:
                         system("cls");
-                        while (state)
+                        while (no)
                         {
                             int opt2;
                             system("color 0b");
@@ -237,23 +247,27 @@ int main()
                             {
                             case 1:
                                 amount = 500;
-                                state = sub_amount(user_save, amount, no);
-                                file_write(&user, fpoint);
+                                state = sub_amount(&user, amount);
+                                update_file(&user, fpoint, state);
+                                no = 0;
                                 break;
                             case 2:
                                 amount = 1000;
-                                state = sub_amount(user_save, amount, no);
-                                file_write(&user, fpoint);
+                                state = sub_amount(&user, amount);
+                                update_file(&user, fpoint, state);
+                                no = 0;
                                 break;
                             case 3:
                                 amount = 2000;
-                                state = sub_amount(user_save, amount, no);
-                                file_write(&user, fpoint);
+                                state = sub_amount(&user, amount);
+                                update_file(&user, fpoint, state);
+                                no = 0;
                                 break;
                             case 4:
                                 amount = 5000;
-                                state = sub_amount(user_save, amount, no);
-                                file_write(&user, fpoint);
+                                state = sub_amount(&user, amount);
+                                update_file(&user, fpoint, state);
+                                no = 0;
                                 break;
                             case 5:
                                 printf("Enter the amount you want to withdraw:");
@@ -265,8 +279,9 @@ int main()
                                 }
                                 else
                                 {
-                                    state = sub_amount(user_save, amount, no);
-                                    file_write(&user, fpoint);
+                                    state = sub_amount(&user, amount);
+                                    update_file(&user, fpoint, state);
+                                    no = 0;
                                     break;
                                 }
                             default:
@@ -275,7 +290,7 @@ int main()
                         }
                     case 4:
                         system("cls");
-                        while (state)
+                        while (no)
                         {
                             int opt2;
                             system("color 0b");
@@ -292,23 +307,27 @@ int main()
                             {
                             case 1:
                                 amount = 500;
-                                state = sub_amount(user_save, amount, no);
-                                file_write(&user, fpoint);
+                                state = sub_amount(&user, amount);
+                                update_file(&user, fpoint, state);
+                                no = 0;
                                 break;
                             case 2:
                                 amount = 1000;
-                                state = sub_amount(user_save, amount, no);
-                                file_write(&user, fpoint);
+                                state = sub_amount(&user, amount);
+                                update_file(&user, fpoint, state);
+                                no = 0;
                                 break;
                             case 3:
                                 amount = 2000;
-                                state = sub_amount(user_save, amount, no);
-                                file_write(&user, fpoint);
+                                state = sub_amount(&user, amount);
+                                update_file(&user, fpoint, state);
+                                no = 0;
                                 break;
                             case 4:
                                 amount = 5000;
-                                state = sub_amount(user_save, amount, no);
-                                file_write(&user, fpoint);
+                                state = sub_amount(&user, amount);
+                                update_file(&user, fpoint, state);
+                                no = 0;
                                 break;
                             case 5:
                                 printf("Enter the amount you want to withdraw:");
@@ -320,8 +339,9 @@ int main()
                                 }
                                 else
                                 {
-                                    state = sub_amount(user_save, amount, no);
-                                    file_write(&user, fpoint);
+                                    state = sub_amount(&user, amount);
+                                    update_file(&user, fpoint, state);
+                                    no = 0;
                                     break;
                                 }
                             default:
@@ -331,6 +351,7 @@ int main()
                     default:
                         break;
                     }
+                    break;
                 }
             }
             else
