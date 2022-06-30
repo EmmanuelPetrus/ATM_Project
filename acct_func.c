@@ -208,7 +208,7 @@ void disp_trans(person *user)
             printf("Kindly Verify the details of the destination account\n");
             printf("Account Name: %s\n", user_trans.fname);
             printf("Account Number: %s\n", user_trans.acct_num);
-            printf("Kindly press [1] to continue or [2] to exit\n");
+            printf("Kindly press [1] to continue or [2] to exit:");
             scanf("%d", &choice);
             fgetc(stdin);
             if (choice == 1)
@@ -217,8 +217,9 @@ void disp_trans(person *user)
                 scanf("%d", &amou_nt);
                 user_trans.bal += amou_nt;
                 update_file(&user_trans, fp, user_trans.bal);
-                int deduction = sub_amount(user, amou_nt,'a');
+                int deduction = sub_amount(user, amou_nt, 'a');
                 update_file(user, fp, deduction);
+                printf("Transfer successfull!!!");
                 break;
             }
         }
