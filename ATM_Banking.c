@@ -9,7 +9,7 @@ int main()
     person *user_password, *user_deposit;
     user_deposit = &user;
     user_password = &info;
-    int opt, opt1, index;
+    int opt, opt1;
     int amount;
     int state;
     int user_found = 0;
@@ -31,6 +31,7 @@ int main()
     {
     case 1:
         printf("\tE ka bo ");
+
         break;
     case 3:
         printf("\tMegwa oo");
