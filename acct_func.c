@@ -201,7 +201,6 @@ void disp_trans(person *user)
     }
     while (fread(&user_trans, sizeof(person), 1, fp))
     {
-        printf("%s\n", user_trans.acct_num);
         if (!compare_str(acct_num, user_trans.acct_num))
         {
             acct_found = 1;
