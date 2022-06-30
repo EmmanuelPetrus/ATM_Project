@@ -227,6 +227,5 @@ void disp_trans(person *user)
     if (!(acct_found))
     {
         printf("\nAccount number not found !!!");
-        exit(2);
     }
 }
