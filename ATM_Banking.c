@@ -12,6 +12,7 @@ int main()
     int opt, opt1, index;
     int amount;
     int state;
+    int user_found = 0;
     char m = 'y';
     int no = 1;
     FILE *fpoint = NULL;
@@ -49,9 +50,10 @@ int main()
             }
             while (fread(&user, sizeof(person), 1, fpoint))
             {
+
                 if (!compare_str(user_password->pin, user.pin))
                 {
-
+                    user_found = 1;
                     system("cls");
                     system("color 3A");
                     printf("\n\t\t\t\t\t\t\t\t\nWelcome %s", user.fname);
@@ -342,8 +344,13 @@ int main()
                         break;
                     }
                 }
+                if (!user_found)
+                {
+                    printf("\nIncorrect Pin!!!");
+                    exit(2);
+                }
             }
-            printf("\nDo you still want to perform anothe operation? [Y] or [N] ? ");
+            printf("\nDo you still want to perform another operation? [Y] or [N] ? ");
             scanf("%c", &m);
         }
     }
