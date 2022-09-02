@@ -43,6 +43,7 @@ void english()
             {
             case 6:
                 change_money();
+                break;
             case 5:
                 printf("Select the service you want to engage:\n");
                 printf(" <<1>> Prepaid <<>>\n");

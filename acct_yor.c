@@ -1,17 +1,17 @@
 #include "acct_head.h"
-void change_money()
+void change_moneyi()
 {
     int money = 0;
     int opt1;
-    printf("Please Insert the amount you want to change: ");
+    printf("E lo lo fe se: ");
     scanf("%d", &money);
     fgetc(stdin);
-    printf("Kindly select the denomination you'll like to change your money into: \n");
+    printf("Irufe eda owo wo lo fe se si: \n");
     printf("\n <<1>> 50 <<>>");
     printf("\t\t\t\t\t\t\t <<2>> 100 <<>>\n");
     printf(" <<3>> 200 <<>>");
     printf("\t\t\t\t\t\t\t <<4>> 500 <<>>\n");
-    printf(">>> ");
+    printf(">>>>");
     scanf("%d", &opt1);
     fgetc(stdin);
     switch (opt1)
@@ -20,44 +20,44 @@ void change_money()
         if (money % 50 == 0)
         {
             int result = money / 50;
-            printf("Kindly take your cash, confirm that it's %d pieces of goodness!!!", result);
+            printf("Gba owo re ki o si ri wipe %d ni oye ti o wa nibe!!!", result);
         }
         else
         {
-            printf("Money is not a multiple of the selected denomination!!!\n");
+            printf("Kosi eda owo ti o mu nibi!!!\n");
         }
         break;
     case 2:
         if (money % 100 == 0)
         {
             int result = money / 100;
-            printf("Kindly take your cash, confirm that it's %d pieces of goodness!!!", result);
+            printf("Gba owo re ki o si ri wipe %d ni oye ti o wa nibe!!!", result);
         }
         else
         {
-            printf("Money is not a multiple of the selected denomination!!!\n");
+            printf("Kosi eda owo ti o mu nibi!!!\n");
         }
         break;
     case 3:
         if (money % 200 == 0)
         {
             int result = money / 200;
-            printf("Kindly take your cash, confirm that it's %d pieces of goodness!!!", result);
+            printf("Gba owo re ki o si ri wipe %d ni oye ti o wa nibe!!!", result);
         }
         else
         {
-            printf("Money is not a multiple of the selected denomination!!!\n");
+            printf("Kosi eda owo ti o mu nibi!!!\n");
         }
         break;
     case 4:
         if (money % 500 == 0)
         {
             int result = money / 500;
-            printf("Kindly take your cash, confirm that it's %d pieces of goodness!!!", result);
+            printf("Gba owo re ki o si ri wipe %d ni oye ti o wa nibe!!!", result);
         }
         else
         {
-            printf("Money is not a multiple of the selected denomination!!!\n");
+            printf("Kosi eda owo ti o mu nibi!!!\n");
         }
         break;
     default:
@@ -67,48 +67,48 @@ void change_money()
 }
 
 // function to take input of users
-void take_input(person *user, char n)
+void take_inputi(person *user, char n)
 {
     if ((n == 'n') || (n == 'e'))
     {
         const char *info = (n != 'n') ? "email" : "name";
         if (!strcmp(info, "name"))
         {
-            printf("\nEnter your fullname: ");
+            printf("\nTe oruke re sibi: ");
             fgets(user->fname, BUFFER, stdin);
             fflush(stdin);
         }
         if (!strcmp(info, "email"))
         {
-            printf("\nEnter your email: ");
+            printf("\nTe Maili re sibi: ");
             fgets(user->email, BUFFER, stdin);
             fflush(stdin);
         }
     }
     else if (n == 'p')
     {
-        printf("\nEnter your phone number: ");
+        printf("\nTe phone number re sibi: ");
         fgets(user->phone_num, BUFFER, stdin);
         fflush(stdin);
     }
     else
     {
         fflush(stdin);
-        printf("\nEnter your Account number: ");
+        printf("\nTe Number Accounti re sibi: ");
         fgets(user->acct_num, BUFFER, stdin);
     }
 }
 
 // function to take in password of user
-void take_password(person *p_word, int n)
+void take_passwordi(person *p_word, int n)
 {
     int k = 1;
-    const char *message = (n == k) ? "Enter" : "Confirm";
-    if (!(strcmp(message, "Enter")))
+    const char *message = (n == k) ? "Te" : "Se atunte ";
+    if (!(strcmp(message, "Te")))
     {
         char password[15] = {0};
         char ch;
-        printf("\n%s your PIN: ", message);
+        printf("\n%s Piini re: ", message);
 
         int i = 0;
         while (((ch = getch()) != '\r') && (i < 10))
@@ -134,7 +134,7 @@ void take_password(person *p_word, int n)
     {
         char ch;
         char password[15] = {0};
-        printf("\n%s your PIN: ", message);
+        printf("\n%s Piini re: ", message);
 
         int i = 0;
         while (((ch = getch()) != '\r') && (i < 10))
@@ -159,7 +159,7 @@ void take_password(person *p_word, int n)
 }
 
 // function to compare strings
-int compare_str(char a[], char b[])
+int compare_stri(char a[], char b[])
 {
     int flag = 0, i = 0;                                                 // integer variables declaration
     while (a[i] != '\0' && b[i] != '\0' && a[i] != '\n' && b[i] != '\n') // while loop
@@ -177,14 +177,14 @@ int compare_str(char a[], char b[])
         return 1;
 }
 
-void deposit(person *depo)
+void depositi(person *depo)
 {
-    printf("\nHow much do you want to deposit:");
+    printf("\nElo lo fe fi pamo:");
     scanf("%d", &depo->bal);
     fgetc(stdin);
 }
 
-int sub_amount(person *bal_ance, int amount, char a)
+int sub_amounti(person *bal_ance, int amount, char a)
 {
     if (bal_ance->bal > amount)
     {
@@ -192,19 +192,19 @@ int sub_amount(person *bal_ance, int amount, char a)
         amount = 0;
         if (a == 'w')
         {
-            printf("Transaction in Progress!!!!\n");
-            printf("Your balance is: %d\n", bal_ance->bal);
-            printf("Kindly take your cash");
+            printf("Idina dura nlo lowo!!!!\n");
+            printf("Ooye ti o wa lapo re ni : %d\n", bal_ance->bal);
+            printf("Tewo Gba Owo re");
         }
     }
     else
     {
-        printf("\nYour balance is %d and it is insufficient", bal_ance->bal);
+        printf("\nOoye ti o wa lapo re ni  %d ko si to", bal_ance->bal);
     }
     return bal_ance->bal;
 }
 
-void update_file(person *acct_details, FILE *fp, int amount)
+void update_filei(person *acct_details, FILE *fp, int amount)
 {
     fclose(fp);
     rewind(fp);
@@ -229,7 +229,7 @@ void update_file(person *acct_details, FILE *fp, int amount)
     }
 }
 
-void disp_trans(person *user)
+void disp_transi(person *user)
 
 {
     person user_trans;
@@ -237,7 +237,7 @@ void disp_trans(person *user)
     int choice = 0;
     int amou_nt = 0;
     int acct_found = 0;
-    printf("Kindly enter the account number you want to transfer to: ");
+    printf("Te account ti o fe fowo ranse si: ");
     scanf("%s", acct_num);
     fgetc(stdin);
     FILE *fp;
@@ -253,27 +253,27 @@ void disp_trans(person *user)
         if (!compare_str(acct_num, user_trans.acct_num))
         {
             acct_found = 1;
-            printf("Kindly Verify the details of the destination account\n");
-            printf("Account Name: %s\n", user_trans.fname);
-            printf("Account Number: %s\n", user_trans.acct_num);
-            printf("Kindly press [1] to continue or [2] to exit:");
+            printf("Shey accounti ti o fe fowo ranse si naa ni?\n");
+            printf("Oruko Accounti: %s\n", user_trans.fname);
+            printf("Number Accounti: %s\n", user_trans.acct_num);
+            printf("Te [1] lati tesiwaju tabi [2] lati pari idinadura:");
             scanf("%d", &choice);
             fgetc(stdin);
             if (choice == 1)
             {
-                printf("Enter the amount you want to transfer: ");
+                printf("Te oye ti o fe fi ranse: ");
                 scanf("%d", &amou_nt);
                 user_trans.bal += amou_nt;
                 update_file(&user_trans, fp, user_trans.bal);
                 int deduction = sub_amount(user, amou_nt, 'a');
                 update_file(user, fp, deduction);
-                printf("Transfer successfull!!!");
+                printf("Aseyori fifi owo ranse!!!");
                 break;
             }
         }
     }
     if (!(acct_found))
     {
-        printf("\nAccount number not found !!!");
+        printf("\nKosi irufe accounti naa ni odo wa !!!");
     }
 }

@@ -1,4 +1,4 @@
-#include "acct_func.c"
+#include "acct_yor.c"
 
 void yoruba()
 {
@@ -14,7 +14,7 @@ void yoruba()
     FILE *fpoint = NULL;
     system("cls");
     system("color 0b");
-    take_password(user_password, 1);
+    take_passwordi(user_password, 1);
     fpoint = fopen("Acct.bin", "rb+");
     if (fpoint == NULL)
     {
@@ -23,7 +23,7 @@ void yoruba()
     }
     while (fread(&user, sizeof(person), 1, fpoint))
     {
-        if (!compare_str(user_password->pin, user.pin))
+        if (!compare_stri(user_password->pin, user.pin))
         {
             user_found = 1;
             system("cls");
@@ -34,15 +34,16 @@ void yoruba()
             printf(" <<2>> Sanwo <<>>\n");
             printf(" <<3>> Enquiyary Balanci <<>>\n");
             printf(" <<4>> Fi Owo Ranse <<>>\n");
-            printf(" <<5>> Awon Owo Miiran <<>>\n\n");
-            printf(" <<6>> Paro Owoda <<>>\n");
+            printf(" <<5>> Awon Owo Miiran <<>>\n");
+            printf(" <<6>> Paro Owoda <<>>\n\n");
             printf(" <<->> Te number ti o mu sibi: ");
             scanf("%d", &opt);
             fgetc(stdin);
             switch (opt)
             {
             case 6:
-                change_money();
+                change_moneyi();
+                break;
             case 5:
                 printf("Iru Owo wo lo fe se:\n");
                 printf(" <<1>> Prepaidi <<>>\n");
@@ -52,7 +53,7 @@ void yoruba()
                 break;
             case 4:
                 system("cls");
-                disp_trans(user_deposit);
+                disp_transi(user_deposit);
                 break;
             case 3:
                 system("cls");
@@ -69,7 +70,7 @@ void yoruba()
                 user.bal += amount;
                 amount = 0;
                 printf("\nFifi owo pamo re ti saseyori, balanci re ni: %d", user.bal);
-                update_file(&user, fpoint, user.bal);
+                update_filei(&user, fpoint, user.bal);
                 break;
             case 1:
                 system("cls");
@@ -103,26 +104,26 @@ void yoruba()
                         {
                         case 1:
                             amount = 100;
-                            state = sub_amount(&user, amount, 'w');
-                            update_file(&user, fpoint, state);
+                            state = sub_amounti(&user, amount, 'w');
+                            update_filei(&user, fpoint, state);
                             no = 0;
                             break;
                         case 2:
                             amount = 500;
-                            state = sub_amount(&user, amount, 'w');
-                            update_file(&user, fpoint, state);
+                            state = sub_amounti(&user, amount, 'w');
+                            update_filei(&user, fpoint, state);
                             no = 0;
                             break;
                         case 3:
                             amount = 1000;
-                            state = sub_amount(&user, amount, 'w');
-                            update_file(&user, fpoint, state);
+                            state = sub_amounti(&user, amount, 'w');
+                            update_filei(&user, fpoint, state);
                             no = 0;
                             break;
                         case 4:
                             amount = 1500;
-                            state = sub_amount(&user, amount, 'w');
-                            update_file(&user, fpoint, state);
+                            state = sub_amounti(&user, amount, 'w');
+                            update_filei(&user, fpoint, state);
                             no = 0;
                             break;
                         case 5:
@@ -134,8 +135,8 @@ void yoruba()
                             }
                             else
                             {
-                                state = sub_amount(&user, amount, 'w');
-                                update_file(&user, fpoint, state);
+                                state = sub_amounti(&user, amount, 'w');
+                                update_filei(&user, fpoint, state);
                                 no = 0;
                             }
                             break;
@@ -161,26 +162,26 @@ void yoruba()
                         {
                         case 1:
                             amount = 400;
-                            state = sub_amount(&user, amount, 'w');
-                            update_file(&user, fpoint, state);
+                            state = sub_amounti(&user, amount, 'w');
+                            update_filei(&user, fpoint, state);
                             no = 0;
                             break;
                         case 2:
                             amount = 1000;
-                            state = sub_amount(&user, amount, 'w');
-                            update_file(&user, fpoint, state);
+                            state = sub_amounti(&user, amount, 'w');
+                            update_filei(&user, fpoint, state);
                             no = 0;
                             break;
                         case 3:
                             amount = 2000;
-                            state = sub_amount(&user, amount, 'w');
-                            update_file(&user, fpoint, state);
+                            state = sub_amounti(&user, amount, 'w');
+                            update_filei(&user, fpoint, state);
                             no = 0;
                             break;
                         case 4:
                             amount = 5000;
-                            state = sub_amount(&user, amount, 'w');
-                            update_file(&user, fpoint, state);
+                            state = sub_amounti(&user, amount, 'w');
+                            update_filei(&user, fpoint, state);
                             no = 0;
                             break;
                         case 5:
@@ -192,8 +193,8 @@ void yoruba()
                             }
                             else
                             {
-                                state = sub_amount(&user, amount, 'w');
-                                update_file(&user, fpoint, state);
+                                state = sub_amounti(&user, amount, 'w');
+                                update_filei(&user, fpoint, state);
                                 no = 0;
                             }
                             break;
@@ -219,26 +220,26 @@ void yoruba()
                         {
                         case 1:
                             amount = 500;
-                            state = sub_amount(&user, amount, 'w');
-                            update_file(&user, fpoint, state);
+                            state = sub_amounti(&user, amount, 'w');
+                            update_filei(&user, fpoint, state);
                             no = 0;
                             break;
                         case 2:
                             amount = 1000;
-                            state = sub_amount(&user, amount, 'w');
-                            update_file(&user, fpoint, state);
+                            state = sub_amounti(&user, amount, 'w');
+                            update_filei(&user, fpoint, state);
                             no = 0;
                             break;
                         case 3:
                             amount = 2000;
-                            state = sub_amount(&user, amount, 'w');
-                            update_file(&user, fpoint, state);
+                            state = sub_amounti(&user, amount, 'w');
+                            update_filei(&user, fpoint, state);
                             no = 0;
                             break;
                         case 4:
                             amount = 5000;
-                            state = sub_amount(&user, amount, 'w');
-                            update_file(&user, fpoint, state);
+                            state = sub_amounti(&user, amount, 'w');
+                            update_filei(&user, fpoint, state);
                             no = 0;
                             break;
                         case 5:
@@ -250,8 +251,8 @@ void yoruba()
                             }
                             else
                             {
-                                state = sub_amount(&user, amount, 'w');
-                                update_file(&user, fpoint, state);
+                                state = sub_amounti(&user, amount, 'w');
+                                update_filei(&user, fpoint, state);
                                 no = 0;
                             }
                         }
@@ -276,26 +277,26 @@ void yoruba()
                         {
                         case 1:
                             amount = 500;
-                            state = sub_amount(&user, amount, 'w');
-                            update_file(&user, fpoint, state);
+                            state = sub_amounti(&user, amount, 'w');
+                            update_filei(&user, fpoint, state);
                             no = 0;
                             break;
                         case 2:
                             amount = 1000;
-                            state = sub_amount(&user, amount, 'w');
-                            update_file(&user, fpoint, state);
+                            state = sub_amounti(&user, amount, 'w');
+                            update_filei(&user, fpoint, state);
                             no = 0;
                             break;
                         case 3:
                             amount = 2000;
-                            state = sub_amount(&user, amount, 'w');
-                            update_file(&user, fpoint, state);
+                            state = sub_amounti(&user, amount, 'w');
+                            update_filei(&user, fpoint, state);
                             no = 0;
                             break;
                         case 4:
                             amount = 5000;
-                            state = sub_amount(&user, amount, 'w');
-                            update_file(&user, fpoint, state);
+                            state = sub_amounti(&user, amount, 'w');
+                            update_filei(&user, fpoint, state);
                             no = 0;
                             break;
                         case 5:
@@ -308,8 +309,8 @@ void yoruba()
                             }
                             else
                             {
-                                state = sub_amount(&user, amount, 'w');
-                                update_file(&user, fpoint, state);
+                                state = sub_amounti(&user, amount, 'w');
+                                update_filei(&user, fpoint, state);
                                 no = 0;
                             }
                             break;

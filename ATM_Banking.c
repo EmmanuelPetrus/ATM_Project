@@ -24,7 +24,7 @@ int main()
         while (tolower(m) == 'y')
         {
             yoruba();
-            printf("\nSe o nife lati shey idinadura omiran [beeni] abi [beeko] ? ");
+            printf("\nSe o nife lati shey idinadura omiran [Y] abi [N] ? ");
             scanf("%c", &m);
         }
         break;
