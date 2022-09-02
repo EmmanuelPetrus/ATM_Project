@@ -21,7 +21,12 @@ int main()
     switch (opt)
     {
     case 1:
-        printf("\tE ka bo ");
+        while (tolower(m) == 'y')
+        {
+            yoruba();
+            printf("\nSe o nife lati shey idinadura omiran [beeni] abi [beeko] ? ");
+            scanf("%c", &m);
+        }
         break;
     case 2:
         while (tolower(m) == 'y')

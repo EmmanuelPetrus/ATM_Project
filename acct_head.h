@@ -31,3 +31,4 @@ void update_file(person *acct_details, FILE *fp, int amount);
 void disp_trans(person *user);
 void english();
 void change_money();
+void yoruba();
