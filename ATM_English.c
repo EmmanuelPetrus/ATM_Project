@@ -35,11 +35,14 @@ void english()
             printf(" <<3>> Balance Enquiries <<>>\n");
             printf(" <<4>> Transfer <<>>\n");
             printf(" <<5>> Top-Up Services <<>>\n\n");
+            printf(" <<6>> Change Money <<>>\n");
             printf(" <<->> Input your choice here: ");
             scanf("%d", &opt);
             fgetc(stdin);
             switch (opt)
             {
+            case 6:
+                change_money();
             case 5:
                 printf("Select the service you want to engage:\n");
                 printf(" <<1>> Prepaid <<>>\n");

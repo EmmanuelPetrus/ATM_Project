@@ -1,4 +1,69 @@
 #include "acct_head.h"
+void change_money()
+{
+    int money = 0;
+    int opt1;
+    printf("Please Insert the amount you want to change: ");
+    scanf("%d", &money);
+    fgetc(stdin);
+    printf("Kindly select the denomination you'll like to change your money into: \n");
+    printf("\n <<1>> 50 <<>>");
+    printf("\t\t\t\t\t\t\t <<2>> 100 <<>>\n");
+    printf(" <<3>> 200 <<>>");
+    printf("\t\t\t\t\t\t\t <<4>> 500 <<>>\n");
+    scanf("%d", &opt1);
+    fgetc(stdin);
+    switch (opt1)
+    {
+    case 1:
+        if (money % 50 == 0)
+        {
+            int result = money / 50;
+            printf("Kindly take your cash, confirm that it's %d pieces of goodness!!!", result);
+        }
+        else
+        {
+            printf("Money is not a multiple of the selected denomination!!!\n");
+        }
+        break;
+    case 2:
+        if (money % 100 == 0)
+        {
+            int result = money / 100;
+            printf("Kindly take your cash, confirm that it's %d pieces of goodness!!!", result);
+        }
+        else
+        {
+            printf("Money is not a multiple of the selected denomination!!!\n");
+        }
+        break;
+    case 3:
+        if (money % 200 == 0)
+        {
+            int result = money / 200;
+            printf("Kindly take your cash, confirm that it's %d pieces of goodness!!!", result);
+        }
+        else
+        {
+            printf("Money is not a multiple of the selected denomination!!!\n");
+        }
+        break;
+    case 4:
+        if (money % 500 == 0)
+        {
+            int result = money / 500;
+            printf("Kindly take your cash, confirm that it's %d pieces of goodness!!!", result);
+        }
+        else
+        {
+            printf("Money is not a multiple of the selected denomination!!!\n");
+        }
+        break;
+    default:
+        printf("No Money Inserted!!!!");
+        break;
+    }
+}
 
 // function to take input of users
 void take_input(person *user, char n)
@@ -164,6 +229,7 @@ void update_file(person *acct_details, FILE *fp, int amount)
 }
 
 void disp_trans(person *user)
+
 {
     person user_trans;
     char acct_num[12];
