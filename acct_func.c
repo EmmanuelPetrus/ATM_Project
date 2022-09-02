@@ -1,22 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <conio.h>
-#include <ctype.h>
-#include <stdbool.h>
 #include "acct_head.h"
-
-typedef struct Detail person;
-struct Detail
-{
-    char fname[BUFFER];
-    char email[BUFFER];
-    char phone_num[BUFFER];
-    char acct_num[BUFFER];
-    char pin[BUFFER];
-    char pin2[BUFFER];
-    long int bal;
-};
 
 // function to take input of users
 void take_input(person *user, char n)

@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "acct_head.h": "c",
+        "ctype.h": "c"
+    }
+}

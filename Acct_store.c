@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <conio.h>
-#include <windows.h>
-#include "acct_func.c"
+#include "acct_head.h"
 
 int main(void)
 {

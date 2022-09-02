@@ -1,6 +1,5 @@
-#include <stdio.h>
-#include <windows.h>
 #include "acct_func.c"
+
 void english()
 {
     person user, info, user_trans;
@@ -24,7 +23,6 @@ void english()
     }
     while (fread(&user, sizeof(person), 1, fpoint))
     {
-
         if (!compare_str(user_password->pin, user.pin))
         {
             user_found = 1;
@@ -318,10 +316,10 @@ void english()
                 break;
             }
         }
-        if (!user_found)
-        {
-            printf("\nIncorrect Pin!!!");
-            exit(2);
-        }
+    }
+    if (!user_found)
+    {
+        printf("\nIncorrect Pin!!!");
+        exit(2);
     }
 }

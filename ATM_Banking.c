@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <windows.h>
-#include <ctype.h>
-#include "ATM_English.c"
+#include "acct_head.h"
 
 int main()
 {
